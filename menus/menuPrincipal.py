@@ -20,6 +20,7 @@ def send_start_message(message):
         "\n\n/frase para mostrar uma frase"
         "\n\n/start ou /help para mostrar os comandos novamente"
         "\n\n /info para informações sobre bot e seu desenvolvedor"
+        "\n\n /historico /history para verificar seu historico de comando e mensagens"
         "\n\n /teste /test para teste de resposta",
     )
 
@@ -47,6 +48,12 @@ def send_cumprimento(message):
     bot.reply_to(message, get_cumprimento_message(message))
 
 
+@bot.message_handler(commands=["historico", "history"])
+def send_cumprimento(message):
+    atualizaLog(message.text, message.from_user.first_name)
+    bot.reply_to(message, get_historico_user(message))
+
+
 @bot.message_handler(commands=["teste", "test", "tt"])
 def send_cumprimento(message):
     atualizaLog(message.text, message.from_user.first_name)
@@ -56,4 +63,4 @@ def send_cumprimento(message):
 @bot.message_handler()
 def send_cumprimento(message):
     atualizaLog(message.text, message.from_user.first_name)
-    bot.reply_to(message, get_contexto_frase(message))
+    bot.reply_to(message, get_palavra_chave_message(message))

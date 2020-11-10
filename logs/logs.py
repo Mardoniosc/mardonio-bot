@@ -13,3 +13,12 @@ def atualizaLog(texto, user):
   arquivo.writelines(data_em_texto + ' - ' + texto + '\n')
   arquivo.close()
   return True
+
+def historico(user):
+  localLogs = os.getcwd()
+  localLogs = localLogs + '/logs/'
+  arquivoPath = localLogs + user + ".txt" 
+  arquivo = open(arquivoPath, "r")
+  historico = arquivo.read()
+  arquivo.close()
+  return historico
